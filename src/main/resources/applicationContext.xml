@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+ 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:task="http://www.springframework.org/schema/task"    
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/util
+         http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/task
+         http://www.springframework.org/schema/task/spring-task-3.0.xsd
+"
+ >
+
+
+	<context:property-placeholder location="classpath:application.properties" />
+
+	<context:component-scan base-package="com.coin.dao" />
+	<context:component-scan base-package="com.coin.web.dao" />
+	<context:component-scan base-package="com.coin.web.service" />
+	<context:component-scan base-package="com.coin.spring.security" />
+
+ 
+	<bean id="messageSource"
+        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:message" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+    
+	<bean id="emailService"  class="com.coin.web.service.impl.EmailServiceImpl" >
+		<property name="velocityEngine" ref="velocityEngine" />
+		<property name="javaMailSender" ref="mailSender" />
+	</bean>
+	
+	<bean id="reCaptcha" class="net.tanesha.recaptcha.ReCaptchaImpl">
+        <property name="privateKey" value="6LdjofcSAAAAAGuV68_8DgK-_OQ9kCW3Wx64DIyh"/>
+    </bean>
+    
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean" 
+          p:resourceLoaderPath="classpath:/coinstore-blossom/email" >
+		<property name="overrideLogging" value="false" />
+	</bean>
+              
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"
+          p:host="${mail.smtpserver}"
+          p:username="${mail.username}"
+          p:password="${mail.password}">
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+    </bean>
+ 
+    <context:annotation-config />
+
+	<import resource="Hibernate.xml"/>
+ 
+ 	<!--  bean id="springSecurityFilterChain" class="com.coin.WebSecurityConfig"></bean -->
+ 
+	<import resource="spring-security.xml"/>
+
+</beans>
+
+
+
+	

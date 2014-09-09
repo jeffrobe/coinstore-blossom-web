@@ -1,0 +1,6 @@
+Hi ${user.firstname}, thank you for registering
+ 
+ to complete the process click on the link below
+ 
+${url}?hash=${hash}
+ 

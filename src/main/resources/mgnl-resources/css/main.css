@@ -1,0 +1,53 @@
+.textinput {margin-bottom:8px;}
+.errorMessage {color:red;}
+body { font-family: "Lucida Sans Unicode","Lucida Grande",Verdana,Arial,Helvetica,sans-serif; font-size: 13px; background-color: #DDDDDD; }
+a {color: #4040ff}
+    a:visited {color: #4040ff;}
+    #container {margin-left:50px; width:875px;}
+
+.header-image #title-area,
+.header-image #title,
+.header-image #title a {
+    display: block;
+    float: left;
+    height: 90px;
+    overflow: hidden;
+    padding: 0;
+    text-indent: -9999px;
+    width: 350px;
+}
+ 
+.header-image #description {
+    display: block;
+    overflow: hidden;
+}
+
+.header-image #title a {
+    background: url( '../images/logo.png' ) no-repeat;
+}
+
+#logo {
+    background: url( '../images/logo.png' ) no-repeat;
+	font-family:Georgia,'Times New Roman',Times,serif; font-size:16px;
+	padding:20px 0px 8px 10px;
+	background-color:#ffffff;
+}
+
+#menu ul {
+        background:#313131;
+        background:-moz-linear-gradient(center top ,#5D5Da0, #313160);
+        background:-webkit-gradient(linear, left top, left bottom, from(#5D5Da0), to(#313160));
+        height:30px;
+        margin: 0 0 10px 0;
+        padding:0 0 0 4px;
+        font-size:14px;
+        list-style:none;
+}
+        
+    #menu ul li {margin-top:0;float:left;display:inline}
+    #menu ul li a {margin-top:4px;padding:5px 8px;color:#fff;text-decoration:none;display:block;outline:0 none;}
+    #menu ul li a:hover {background:#fafafa;color:#4b4b4b}
+    #content {background-color:white;padding:15px;margin-bottom:20px;-moz-border-radius-bottomleft:5px;-moz-border-radius-bottomright:5px;}
+	#main1 { float:left; width: 625px; background-color: #ffffff;}
+	#promos { float:left; width: 200px; background-color: #ffffff;margin-left:20px;}
+    #copyright {padding:20px 15px 0 15px;clear:both;text-align:center;color: #737373;}

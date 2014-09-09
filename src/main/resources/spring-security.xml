@@ -1,0 +1,36 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	
+	<http auto-config="false" >
+		<intercept-url pattern="/coinbl/admin**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/coinbl/member**" access="ROLE_USER" />
+ 		<intercept-url pattern="/coinbl/member/**" access="ROLE_USER" />
+ 		<intercept-url pattern="/coinbl/member/index.html" access="ROLE_USER" />
+ 		<intercept-url pattern="/coinbl/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+ 		<intercept-url pattern="/coinbl/resources/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+ 
+		<logout logout-url="/coinbl/logout.html" />		
+		<logout logout-success-url="/coinbl/index.html" />
+ 
+		<form-login authentication-details-source-ref="customWebAuthenticationDetailsSource" 
+		    login-page="/coinbl/login.html" 
+		    default-target-url="/coinbl/" 
+			authentication-failure-url="/coinbl/login.html?error" 
+			username-parameter="username"
+			password-parameter="password" />
+
+
+			
+	</http>
+ 
+	<authentication-manager alias="authenticationManager">  
+		<authentication-provider ref="customAuthenticationProvider" />
+    </authentication-manager>  
+  
+</beans:beans>
+
